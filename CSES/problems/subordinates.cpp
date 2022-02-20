@@ -1,25 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define ll long long
-#define SPEED ios::sync_with_stdio(false); cin.tie(0); cout.tie(0) 
-#define pb push_back
-#define rsz resize
-#define all(x) begin(x), end(x)
-#define sz(x) (int)(x).size()
+#define SPEED ios::sync_with_stdio(false); cin.tie(0); cout.tie(0)
+#define FOR(i,a,b) for(int i=a;i<b;++i)
+#define REP(i,n) FOR(i,0,n)
 
-void output_vector(vector<int> v) {
-	for (auto i: v) {
-		cout << i << " ";
+int counts[200005] = {0};
+vector<int> adj[200005];
+
+void dfs(int start) {
+	counts[start] = 1;
+	for (int v : adj[start]) {
+		dfs(v);
+		counts[start] += counts[v];
 	}
-	cout << endl;
 }
 
 int main() {
 	SPEED;
 	int n;
 	cin >> n;
-	vector<int> v(n+1);
+		
+	int b;
+	FOR(i, 2, n+1) {
+		cin >> b;
+		
+		adj[b].push_back(i);
+	}
 	
-	for (int i = 
+	dfs(1);
+	
+	FOR(i, 1, n+1) {
+		cout << counts[i] -1 << " ";
+	}
+	cout << endl;
 }
