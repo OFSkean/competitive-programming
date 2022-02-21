@@ -14,9 +14,15 @@ const ll MOD = (ll) 1e9 + 7;
 
 void exponentiation(ll a, ll b) {
 	ll val = 1;
-	REP(i, b) {
-		val *= a;
-		val %= MOD;
+	while (b > 0) {
+        if (b & 1) {
+		    val *= a;
+		}
+        a *= a;
+        
+        a %= MOD;
+        val %= MOD;
+        b >>= 1;
 	}
 	
 	cout << val << endl;
