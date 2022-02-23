@@ -29,20 +29,25 @@ int main() {
     }
 
     cout << "YES" << endl;
+    
+    // use gaussian sum trick
+    // sum(1..8) = 1 + 2 + 3 + 4
+    //           + 8 + 7 + 6 + 5
+    // column sums are the same
+    //
+
+    int offset = (n%2) ? 1 : 0;
     vector<int> l1;
     vector<int> l2;
-    REP(i, n/2-1) {
-        l1.push_back(i+1);
-        l2.push_back(n-i-1);
+    REP(i, n/2) {
+        vector<int>* alt = (i % 2) ? &l2 : &l1;
+
+        (*alt).pb(i+1);
+        (*alt).pb(n-i-offset);
+        
     }
-    if (n/2 % 2) {
-        l1.push_back(n - n/2);
-        l2.push_back(n - n/2 - 1);
-    }
-    else {
-        l1.push_back(n/2);
-    }
-    l1.push_back(n);
+    
+    if (n % 2) l2.pb(n);
 
     cout << l1.size() << endl;
     output_vector(l1);    
