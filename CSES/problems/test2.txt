@@ -1,0 +1,11 @@
+--2022-02-21 19:38:03--  https://cses.fi/file/cd201713e978a82b520ee0ee20f4402b89c84d67fbeedb46b49ce6d447027819/3/1/
+Resolving cses.fi (cses.fi)... 188.166.104.231
+Connecting to cses.fi (cses.fi)|188.166.104.231|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2000 (2.0K) [text/plain]
+Saving to: ‘index.html.1’
+
+     0K .                                                     100% 67.2M=0s
+
+2022-02-21 19:38:03 (67.2 MB/s) - ‘index.html.1’ saved [2000/2000]
+
