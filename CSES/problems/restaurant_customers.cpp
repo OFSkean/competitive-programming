@@ -9,30 +9,22 @@ using namespace std;
 int main() {
 	SPEED;
 	
-	vector<int> a, d;
+	vector<pair<int, int>> events;
 	int n;
 	cin >> n;
 	
 	for (int i = 0; i < n; i++) {
 		int y,z;
 		cin >> y >> z;
-		a.push_back(y); d.push_back(z);
+		events.push_back(make_pair(y, 1));
+		events.push_back(make_pair(z, -1));
 	}
 	
-	sort(a.begin(), a.end());
-	sort(d.begin(), d.end());
-	int p1 = 0, p2 = 0;
-	int count = 0; int best = 0;
-	int timer = 0;
-	while (p1 < n && p2 < n) {
-		timer = a[p1];
-		p1++; count++;
-		
-		while (d[p2] <= timer) {
-			p2++; count--; 
-		}
-		
-		
+	sort(events.begin(), events.end());
+	
+	int best = 0; int count = 0;
+	for (pair<int,int> event : events) {
+		count += event.second;
 		best = max(best, count);
 	}
 	
