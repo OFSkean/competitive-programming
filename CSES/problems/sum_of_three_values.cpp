@@ -10,13 +10,35 @@ using namespace std;
 #define FOR(i,a,b) for(int i=a;i<b;++i)
 #define REP(i,n) FOR(i,0,n)
 
-void output_vector(vector<int> v) {
-	for (auto i: v) {
-		cout << i << " ";
-	}
-	cout << endl;
-}
-
 int main() {
 	SPEED;
+	int n, k;
+	cin >> n >> k;
+	
+	vector<ll> arr;
+	REP(i, n) {
+		ll x;
+		cin >> x;
+		arr.push_back(x);
+	}
+
+	sort(arr.begin(), arr.end());
+	FOR(i, n) {
+		
+		ll start = i+1;
+		ll end = n-1;
+		while (start < end) {
+			ll summer = arr[i] + arr[start] + arr[end] 
+			if (summer == k) {
+				cout << arr[i] << " " << arr[start] << " " << arr[end];
+				exit(0);
+			}
+			while (summer > k) {
+				end--;
+			}
+			else 
+
+			if 
+		}
+	}
 }
