@@ -33,4 +33,11 @@
 *.exe
 *.out
 *.out*
-*.app
+*.app 
+
+# LaTEX junk
+*.bbl
+*.blg
+*.aux
+*.log
+*.gz
