@@ -10,6 +10,7 @@ using namespace std;
 #define FOR(i,a,b) for(int i=a;i<b;++i)
 #define REP(i,n) FOR(i,0,n)
 
+// call like hanoi(n, 1, 2, 3)
 vector<pair<int,int>> moves;
 
 void hanoi(int d, int l, int m, int r) {

@@ -10,6 +10,8 @@ using namespace std;
 #define FOR(i,a,b) for(int i=a;i<b;++i)
 #define REP(i,n) FOR(i,0,n)
 
+// load data directly into first row of seg tree
+// make sure range is [start, end+1)
 const int MAXN = 2e5 + 1;
 ll seg[MAXN*4];
 ll n;

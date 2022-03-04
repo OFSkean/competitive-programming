@@ -27,6 +27,7 @@ int binsearch(int key, int l, int r) {
 }
 
 // performs DP algorithm
+// initialize endings array to INT_MAX
 // endings array position i stores minimum ending to i-length increasing subsequence
 void solve(int n) {
 	int ans = 0;

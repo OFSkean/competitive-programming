@@ -4,6 +4,7 @@ using namespace std;
 #define ll long long
 #define SPEED ios::sync_with_stdio(false); cin.tie(0); cout.tie(0) 
 
+//read directly into first row of sparse table
 #define MAXLOG 20
 #define MAXN 200000
 int sparse[MAXN][MAXLOG];
@@ -19,14 +20,14 @@ void construct(int n) {
 	//build sparse table
 	for (int row = 1; row < MAXLOG; row++) {
 		for (int i = 0; i + (1 << row) <= n; i++) {
-			sparse[i][row] = min(sparse[i][row-1], sparse[i + (1 << (row-1))][row-1]);
+			sparse[i][row] = min(sparse[i][row-1], 
+							sparse[i + (1 << (row-1))][row-1]);
 		}
 	}
 }
 
 int query(int l, int r) {
 	int row = logs[r - l + 1];
-	//cout << l << " " << r << " " << sparse[l][row] << " " <<  sparse[r - (1 << row) + 1][row] << endl;
 	return min(sparse[l][row], sparse[r - (1 << row) + 1][row]);
 }
 
