@@ -10,17 +10,13 @@ using namespace std;
 #define FOR(i,a,b) for(int i=a;i<b;++i)
 #define REP(i,n) FOR(i,0,n)
 
-int josephus(int n, int k) {
-    int res = 0;
-    FOR(i, 1, n+1) {
-        res = (res + k) % i;
-        cout << res << " ";
-    }
-    return res+1;
+void output_vector(vector<int> v) {
+	for (auto i: v) {
+		cout << i << " ";
+	}
+	cout << endl;
 }
+
 int main() {
 	SPEED;
-    int n;
-    cin >> n;
-    cout << josephus(n, 2) << endl;
 }

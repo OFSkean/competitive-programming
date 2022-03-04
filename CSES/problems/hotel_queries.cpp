@@ -16,23 +16,34 @@ ll n;
 
 void construct() {
     for (ll i = n-1; i > 0; i--) {
-        seg[i] = seg[i<<1]  + seg[i<<1|1];
+        seg[i] = max(seg[i<<1], seg[i<<1|1]);
     }
 }
 
 void update(ll pos, ll val) {
     for (seg[pos += n] = val; pos > 1; pos >>= 1) {
-        seg[pos>>1] = seg[pos] + seg[pos^1];
+        seg[pos>>1] = max(seg[pos], seg[pos^1]);
     }
 }
 
-void query(ll l, ll r) {
-    ll sum = 0;
-    for (l += n, r+= n; l < r; l >>= 1, r >>= 1) {
-        if (l&1) sum += seg[l++];
-        if (r&1) sum += seg[--r];
+int query(ll key) {
+	ll i = 1;
+	if (seg[1] < key) {
+		return 0;
+	}
+	cout << key << " ";
+    while (i < n) {
+		cout << i << " ";
+		if (seg[i<<1] >= key) {
+			i <<= 1;
+		}
+		else {
+			i <<=1; i++;
+		}
     }
-    cout << sum << endl;
+	cout << i << endl;
+	update(i-n, seg[i] - key);
+    return i-n+1;
 }
 
 int main() {
@@ -44,19 +55,17 @@ int main() {
     }
 
     construct();
-    
+
     REP(i, q) {
-        ll a, b, c;
-        cin >> a >> b >> c;
-      
-        if (a==1) {
-            b--;
-            update(b, c);
-        }
-        else {
-            b--;
-            query(b, c);
-        }
+        int h;
+        cin >> h;
+    cout << endl; 
+	REP(i, 2*n) {
+		cout << seg[i] << " ";
+	}
+	cout << endl;
+        cout << query(h) << " ";
     }
+	cout << endl;
 
 }

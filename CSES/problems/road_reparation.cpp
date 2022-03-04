@@ -10,6 +10,7 @@ using namespace std;
 #define FOR(i,a,b) for(int i=a;i<b;++i)
 #define REP(i,n) FOR(i,0,n)
 
+
 // put weight first in edge tuple for sorting
 vector<int> parent, ranks;
 vector<tuple<ll, int, int>> edges;
