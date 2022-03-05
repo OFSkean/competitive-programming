@@ -55,37 +55,100 @@
 For counting, use DFS and increment whenever the recursive call is completely finished. For listing, keep a vector that gets appended to during DFS. Print the vector, then reset it for the next component.
 
 \subsection{Strongly Connected Components}
-For counting, use DFS and increment whenever the recursive call is completely finished. For listing, keep a vector that gets appended to during DFS. Print the vector, then reset it for the next component.
+
+\includegraphics[scale=0.8]{kosaraju}
 
 \subsection{Bipartite Check}
 
+
+\includegraphics[scale=0.6]{twocoloring}
+
 \subsection{Maximum Flow}
+
+\includegraphics[scale=0.6]{fordfulkerson}
+
+\subsection{Minimum Cost Flow}
+
+
+\includegraphics[scale=0.6]{mincostflowa}
+
+\includegraphics[scale=0.6]{mincostflowb}
 
 \subsection{Bipartite Matching}
 
-\subsection{Number of Paths of Fixed Length}
 
+\includegraphics[scale=0.6]{bipartitematchign}
+
+\subsection{Number of Paths of Fixed Length}
+Suppose we have an adjacency matrix G, and we wish to find the number of paths with length k. G[i][j] is the number of edges from i to j. Raise the matrix G to the k-th power, then count the ones. Can use binary exponentiation if needed.
 \subsection{2SAT}
 
+\includegraphics[scale=0.8]{2sata}
+
+\includegraphics[scale=0.8]{2satb}
 \subsection{TSP}
+
+\includegraphics[scale=0.6]{tsp}
 
 \subsection{Lowest Common Ancestor}
 
+
+\includegraphics[scale=0.7]{lca}
+
 \subsection{Eulerian Path}
+Eulerian cycle only exists if degree of every node is even.
+Eulerian path only exists if number of vertices with odd degree is 0 or 2.
+
+\includegraphics[scale=0.7]{eulerianpath}
+    
 
 \subsection{Hamiltonian Path}
+
+\includegraphics[scale=0.7]{lca}
+
+\subsection{Centers}
+Center of graph: set of vertices with minimum eccentricity. Use floyd warshall
+
+Diameter of tree: BFS from v1. Last seen is v2. BFS from v2. Last seen is v3.
+
+Center of tree: Do above and center is the middle of path from v2 to v3.
 
 \section{Dynamic Programming}
 \subsection{Longest Increasing Subseqeuence}
 
 \includegraphics[scale=0.5]{lis}
 
-\subsection{Edit Distance}
-\subsection{Coins Problem}
-\subsection{Knapsack}
-\subsection{Rod Cutting}
-\subsection{Counting Tilings}
+\subsection{Longest Common Subsequence}
 
+\includegraphics[scale=0.5]{lcs}
+
+\subsection{Shortest Common Supersequence}
+
+\includegraphics[scale=0.5]{scs}
+
+\subsection{Edit Distance}
+
+\includegraphics[scale=0.5]{edit}
+
+\subsection{Coins Problem}
+\includegraphics[scale=0.7]{coins}
+\subsection{Knapsack}
+
+\includegraphics[scale=0.7]{knapsack}
+
+\subsection{Partition}
+\includegraphics[scale=0.7]{partition}
+
+\subsection{Rod Cutting}
+
+\includegraphics[scale=0.7]{rod}
+
+\subsection{Word Break}
+
+\includegraphics[scale=0.6]{wordbreak}
+
+\subsection{Counting Tilings}
+\includegraphics[scale=0.6]{tilings}
 \section{Number Theoretic}
 \subsection{Primality Testing}
 
@@ -117,7 +180,7 @@ For counting, use DFS and increment whenever the recursive call is completely fi
 Uses:
 1) Check if t is in s. Run KMP with the string s+\#+t.
 
-\subsection{Manacher Palindroms}
+\subsection{Manacher Palindromes}
 \includegraphics[scale=0.5]{manacher}
 
 
@@ -145,6 +208,10 @@ Uses:
 
 \subsection{Balanced Sequences}
 
+
+\includegraphics[scale=0.6]{balanced}
+
+
 \subsection{Korder Statistic}
 C++ standard library has this implemented already. The function is called $nth\_element$.
 
@@ -152,7 +219,9 @@ C++ standard library has this implemented already. The function is called $nth\_
 
 \subsection{Josephus Queries}
 
-\includegraphics[scale=0.5]{quickjosephus}
+\includegraphics[scale=0.5]{josephus}
 
 \subsection{Convex Hull}
+
+\includegraphics[scale=0.6]{convex}
 \end{document}
