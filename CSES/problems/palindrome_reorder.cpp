@@ -30,7 +30,7 @@ int main() {
         }
     }
 
-    if ((s.size() % 2 == 0 && numOdds) || (numOdds > 1)) {
+    if (numOdds > 1) {
         cout << "NO SOLUTION" << endl;
         exit(0);
     }

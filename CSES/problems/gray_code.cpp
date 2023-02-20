@@ -15,8 +15,8 @@ vector<string> construct(int n) {
     
     //base case
     if (n == 1) {
-        vec.pb("1");
         vec.pb("0");
+        vec.pb("1");
         return vec;
     }
     
