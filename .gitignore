@@ -34,6 +34,7 @@
 *.out
 *.out*
 *.app 
+*.stackdump
 
 # LaTEX junk
 *.bbl
