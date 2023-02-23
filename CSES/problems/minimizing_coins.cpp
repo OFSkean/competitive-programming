@@ -1,3 +1,4 @@
+
 // https://cses.fi/problemset/submit/1634/
 
 #include <bits/stdc++.h>
