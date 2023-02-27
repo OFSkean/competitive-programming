@@ -106,10 +106,10 @@ vector<cd> to_timedomain(vector<ll> &a) {
 	return fa;
 }
 
-vector<cd> td_multiply(vector<ll> &a, vector<ll> &b) {
-	auto N = next_power_of_two(sz(a));
+vector<ll> td_multiply(vector<ll> &a, vector<ll> &b) {
+	auto N = next_power_of_two(sz(a)+sz(b)+1);
 	vector<cd> fa(all(a)), fb(all(b));
-	vector<cd> c(N);
+	vector<ll> c(N);
 
 	fa.resize(N);
 	fb.resize(N);
@@ -123,37 +123,64 @@ vector<cd> td_multiply(vector<ll> &a, vector<ll> &b) {
 	fft(fa, 1);
 	
     REP(i, N) {
-		c[i] = round(fa[i].real());
+		c[i] = min((double) 1, round(fa[i].real()));
 	}
 	
-	//auto a = to_timedomain();
-	
-	print_vector(c);
-
 	return c;
 }
 
 int main() {
 	SPEED;
 	
-	vector<vector<ll>> a;
-		
-	REP(i, 16) {
-		vector<ll> q;
-		a.pb(q);
-		REP(j, 16) {
-			char jjj;
-			cin >> jjj;
-			a[i].pb(jjj - '0');
+	int n;
+	cin >> n;
+	
+	vector<vector<ll>> board_signals(n*n, vector<ll>(n*n,0));
+	
+	vector<ll> fullsignal;
+	vector<ll> fullersignal;
+	string fullstring;
+	
+	// which squares are NOT attacked
+	REP(i, n*n) {
+		REP(j, n*n) {
+			int irow = i / n; int icol = i % n;
+			int jrow = j / n; int jcol = j % n;
+
+			bool samerow = irow == jrow;
+			bool samecol = icol == jcol;
+			bool samediag = abs(irow - jrow) == abs(icol - jcol);
+
+			if (i == j) board_signals[i][j] = 1; //cant attack self
+			else if (!samerow && !samecol && !samediag) board_signals[i][j] = 1;
+			
+			fullstring += board_signals[i][j] + '0';
+			fullsignal.pb(board_signals[i][j]);
+			fullersignal.pb(board_signals[i][j]);
 		}
+		REP(j, n*n) fullersignal.pb(0);
 	}
 	
-	vector<vector<cd>> b;
-	REP(i, 16) {
-		b.pb(to_timedomain(a[i]));
-		cout << "VECTOR " << i << endl;
-		print_vector(b[i]);
+	vector<ll> copy = fullsignal;
+
+
+	vector<ll> test = fullsignal;
+	REP(i, n-1) {
+		test = td_multiply(test, fullersignal);
 		
-		if (i >= 1) td_multiply(a[i], a[i]);
-	}
+		int counts[n] = {0};
+		REP(j, test.size()/(n*n)) {
+			int summer =  accumulate(test.begin()+j*n*n, test.begin()+(j+1)*n*n, 0);
+			cout << summer << endl;
+			counts[summer]++;
+		}
+	} 
+	//vector<vector<cd>> b;
+	//REP(i, 16) {
+		//b.pb(to_timedomain(a[i]));
+		//cout << "VECTOR " << i << endl;
+		//print_vector(b[i]);
+		
+		//if (i >= 1) td_multiply(a[i], a[i]);
+	//}
 }
