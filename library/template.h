@@ -1,3 +1,7 @@
+#ifndef TEST_H
+#define TEST_H
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -11,3 +15,5 @@ const double PI = acos(-1);
 #define sz(x) (int)(x).size()
 #define FOR(i,a,b) for(ll i=a;i<b;++i)
 #define REP(i,n) FOR(i,0,n)
+
+#endif

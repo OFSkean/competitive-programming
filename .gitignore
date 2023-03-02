@@ -3,6 +3,7 @@
 
 # Text files
 *.txt
+submittable.*
 
 # Compiled Object files
 *.slo
