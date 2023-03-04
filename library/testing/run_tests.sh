@@ -11,8 +11,8 @@ while mapfile -t -n 2 ary && ((${#ary[@]})); do
 	#loop through all io file pairs
 	for iofile in $(echo $iofiles | tr "," "\n")
 	do	
-		infile="inputs/$iofile.txt"
-		outfile="outputs/$iofile.txt"
+		infile="inputs/$iofile.test"
+		outfile="outputs/$iofile.test"
     	
 		#run test
 		timeusage=`\time -o timings.txt -f '%S %M' ./a.out < $infile > tmp.txt`
