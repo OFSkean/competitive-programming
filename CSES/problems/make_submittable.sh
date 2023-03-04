@@ -49,10 +49,10 @@ do
 
         if [[ $filename = *stdc\+\+* && $currentfilename =~ "template.h" ]]
         then
-            echo $line >> $newfilename
+            echo "$line" >> $newfilename
         fi
     else
-        echo $line >> $newfilename
+        echo "$line" >> $newfilename
     fi
 done
 
