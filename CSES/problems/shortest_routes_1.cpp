@@ -6,7 +6,7 @@ int main() {
     int n, m;
     cin >> n >> m;
 
-    Graph g(n);
+    Graph g(n+1);
 
     REP(i, m) {
         ll a, b, c;

@@ -1,2 +1,2 @@
-g++ -I ../../library $1
-./a.out < input.txt
+g++ -g -Wall -I ../../library $1
+#./a.out < input.txt
