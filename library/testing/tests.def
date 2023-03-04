@@ -1,0 +1,6 @@
+djikstra_small,djikstra_big
+../../CSES/problems/shortest_routes_1.cpp
+floyd_small,floyd_big,floyd_none
+../../CSES/problems/shortest_routes_2.cpp
+kruskal_small,kruskal_big,kruskal_none
+../../CSES/problems/road_reparation.cpp

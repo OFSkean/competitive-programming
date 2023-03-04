@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TIMEFORMAT="%3S"
-testfile=tests.txt
+testfile=tests.def
 while mapfile -t -n 2 ary && ((${#ary[@]})); do
 	iofiles=${ary[0]}
 	cppfile=${ary[1]}
