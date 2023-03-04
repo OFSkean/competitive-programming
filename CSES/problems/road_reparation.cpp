@@ -16,8 +16,8 @@ int main() {
         g.addEdge(b,a,c);
     }
     
-    ll cost = g.kruskal();
-    
+	ll cost = g.kruskal();
+    	    
     if (cost == -1) cout << "IMPOSSIBLE";
     else cout << cost;
     cout << endl;
