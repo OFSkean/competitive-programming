@@ -1,4 +1,5 @@
 #include "template.h"
+#include "unionfind.h"
 
 typedef struct edge
 {
@@ -19,22 +20,21 @@ ostream& operator<<(ostream& os, const Edge& edge) {
 
 class Graph {
     vector<vector<Edge>> adj;
-    vector<vector<ll>> distances;
     ll n;
 
     public:
     static const ll bfn = 1e14;
 
-    Graph(ll num_nodes) : adj(num_nodes+1, vector<Edge>(0)), distances(num_nodes+1, vector<ll>(num_nodes+1, (ll) bfn)), n(num_nodes+1) {}
+    Graph(ll num_nodes) : adj(num_nodes+1, vector<Edge>(0)), n(num_nodes+1) {}
 
     void addEdge(ll from, ll to, ll weight) {
         Edge new_edge = {from, to, weight};
         adj[from].pb(new_edge);
-        distances[from][to] = min(distances[from][to], weight);
     }
-    
+
     //computes sssp
     //needs non-negative weights
+    //O(E + VlogV)
     vector<ll> djikstra(ll start, ll end) {
         bool seen[this->n] = {false} ;
         vector<ll> distances(this->n, (ll) LONG_MAX);
@@ -57,23 +57,69 @@ class Graph {
                 }
             }
         }
-        
+
         return distances;
     }
-    
+
     //computes apsp
     //needs no negative cycles
+    //O(V^3)
     vector<vector<ll>> floyd() {
+        vector<vector<ll>> distances(n, vector<ll>(n, (ll) bfn));
+
+        FOR(i, 1, n) {
+            for (auto e: adj[i]) {
+                distances[e.from][e.to] = min(distances[e.from][e.to], e.weight);
+            }
+        }
+        
         FOR(k, 1, n) {
             FOR(i, 1, n) {
                 FOR(j, 1, n) {
                     distances[i][j] = min(distances[i][j], 
-                        distances[i][k] + distances[k][j]);
+                            distances[i][k] + distances[k][j]);
                 }
             }
         }
 
         return distances;
+    }
+
+
+    //computes mst
+    //O(E log V) (log V instead of log E due to union-find)
+    ll kruskal() {
+        //collect all edges and sort them
+        vector<Edge> edges;
+        REP(i, n) {
+            for (auto e: adj[i]) edges.pb(e);
+        }
+        sort(all(edges));
+        reverse(all(edges));
+
+        //initialize unionfind
+        UnionFind uf(n);
+        FOR(i, 0, n) {
+            uf.make_set(i);
+        }
+        
+        // perform kruskal
+        ll cost = 0;
+        vector<pair<int,int>> result;
+        for (auto e : edges) {
+            if (uf.find_set(e.from-1) != uf.find_set(e.to-1)) {
+                cost += e.weight;
+                result.push_back({e.from, e.to});
+                uf.union_sets(e.from-1, e.to-1);
+            }
+        }
+        
+        //return MST edge set
+        //if (return_edges) return edges;
+
+        //return MST cost
+        if ((int) result.size() < n-2) return -1;
+        return cost;
     }
 
     void printGraph() {
