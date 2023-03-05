@@ -85,7 +85,6 @@ class Graph {
         return distances;
     }
 
-
     //computes mst
     //O(E log V) (log V instead of log E due to union-find)
     ll kruskal() {
@@ -120,6 +119,28 @@ class Graph {
         //return MST cost
         if ((int) result.size() < n-2) return -1;
         return cost;
+    }
+
+    
+    //performs a dfs starting from a given node
+    //optional function argument that gets called on each visit
+    template<typename Functor>
+    void dfs(ll start, ll time, vector<ll>& seen, vector<ll>& finished, Functor f) {
+         if (finished[start]) return;
+
+         seen[start] = time;
+         for (auto e: adj[start]) {
+            dfs(e.to, time+1, seen, finished, f);
+         }
+        
+         finshed[start] = time;
+         f(start);
+    }
+
+    //performs a dfs starting from a given node
+    //optional lambda function to do something after each found component
+    template<typename Functor>
+    void dfs(Functor functor) {
     }
 
     void printGraph() {
