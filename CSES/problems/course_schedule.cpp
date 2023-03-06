@@ -11,7 +11,7 @@ int main() {
     REP(i, m) {
         int a, b;
         cin >> a >> b;
-        g.addEdge(a, b, 0);
+        g.addEdge(a, b);
     }
 
     vector<ll> topo = g.topologicalSort();

@@ -12,8 +12,7 @@ int main() {
     REP(i, m) {
         ll a,b, c;
         cin >> a >> b >> c;
-        g.addEdge(a,b,c);
-        g.addEdge(b,a,c);
+        g.addBiEdge(a,b,c);
     }
     
 	ll cost = g.kruskal();

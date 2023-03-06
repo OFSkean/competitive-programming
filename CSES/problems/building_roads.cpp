@@ -25,9 +25,7 @@ int main() {
 	REP(i, m) {
 		int a, b;
 		cin >> a >> b;
-
-		g.addEdge(a, b, 0);
-		g.addEdge(b, a, 0);
+        g.addBiEdge(a,b);
 	}
 
 	auto newroads = g.buildRoads();

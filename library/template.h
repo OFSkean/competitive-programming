@@ -26,4 +26,12 @@ typedef struct VoidNoOp {
     }
 } NOOP;
 
+template <typename G>
+void output_vector(vector<G> v) {
+	for (auto i: v) {
+		cout << i << " ";
+	}
+	cout << endl;
+}
+
 #endif
