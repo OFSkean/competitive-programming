@@ -6,3 +6,5 @@ kruskal_small,kruskal_big,kruskal_none
 ../../CSES/problems/road_reparation.cpp
 fft_small,fft_big
 ../../CSES/problems/signal_processing.cpp
+topological_small,topological_big,topological_cycle
+../../CSES/problems/course_schedule.cpp
