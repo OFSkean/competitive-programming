@@ -141,17 +141,22 @@ class Graph {
 		}
 
 	//computes the dfs forest
-	template<typename F, typename G>
-		void dfsall(F* visit_func, G* cycle_func) {	
+	template<typename F, typename G, typename H>
+		void dfsall(F* visit_func, G* cycle_func, H* dfstree_func) {	
 			vector<bool> seen(n);
 			vector<bool> finished(n);
 
 			FOR(i, 1, n) {
 				if (!finished[i]) {
 					dfs(i, seen, finished, visit_func, cycle_func);
+					(*dfstree_func)(i);
 				}
 			}
 		}
+    template<typename F, typename G>	
+		void dfsall(F* visit_func, G* cycle_func) {
+			dfsall(visit_func, cycle_func, new NOOP);
+		}	
 
 	//computes the topological sort
 	//checks for cycle along the way

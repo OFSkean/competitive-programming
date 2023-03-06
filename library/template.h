@@ -6,6 +6,7 @@
 using namespace std;
 
 using cd = complex<double>;
+
 const double PI = acos(-1);
 #define ll long long
 #define SPEED ios::sync_with_stdio(false); cin.tie(0); cout.tie(0) 
@@ -15,5 +16,14 @@ const double PI = acos(-1);
 #define sz(x) (int)(x).size()
 #define FOR(i,a,b) for(ll i=a;i<b;++i)
 #define REP(i,n) FOR(i,0,n)
+
+typedef struct VoidNoOp {
+    void operator()() const { };
+    template<typename P1, typename... Params>
+    void operator()(P1 p1, Params... parameters) {
+        (void)(p1);
+        operator()(parameters...);
+    }
+} NOOP;
 
 #endif
