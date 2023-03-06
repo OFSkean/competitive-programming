@@ -32,10 +32,25 @@ class Graph {
 		adj[from].pb(new_edge);
 	}
 
+    void addEdge(ll from, ll to) {
+        addEdge(from, to, 1);
+    }
+
+    void addBiEdge(ll from, ll to, ll weight) {
+        addEdge(from, to, weight);
+        addEdge(to, from, weight);
+    }
+
+    void addBiEdge(ll from, ll to) {
+        addBiEdge(from, to, 1);
+    }
+
 	//computes sssp
 	//needs non-negative weights
+    //returns distances from start to each node
 	//O(E + VlogV)
-	vector<ll> djikstra(ll start, ll end) {
+    template<typename F>
+	vector<ll> djikstra(ll start, ll end, F* parent_func) {
 		bool seen[this->n] = {false} ;
 		vector<ll> distances(this->n, (ll) LONG_MAX);
 		distances[start] = 0;
@@ -53,6 +68,7 @@ class Graph {
 					if (distances[b.from] + b.weight < distances[b.to]) {
 						distances[b.to] = distances[b.from] + b.weight;
 						q.push({b.from, b.to, distances[b.to]});
+                        (*parent_func)(b.from, b.to);
 					}
 				}
 			}
@@ -60,6 +76,32 @@ class Graph {
 
 		return distances;
 	}
+    
+    vector<ll> djikstra(ll start, ll end) {
+        return djikstra(start, end, new NOOP);
+    }
+
+    //returns a vector describing the nodes along
+    //the shortest path from start to end
+    vector<ll> listShortestPath(ll start, ll end) {
+        vector<ll> parents(n, 0);
+
+		auto setParent = [&parents](ll parent, ll child) {parents[child] = parent;};
+        djikstra(start, end, &setParent);
+        
+        //if no path exists
+        if (parents[end] == 0) return {-1};
+
+        //else get path
+        vector<ll> path = {end};
+        while(end != start) {
+            path.pb(parents[end]);
+            end = parents[end];
+        }
+        reverse(path.begin(), path.end());
+
+        return path;
+    }
 
 	//computes apsp
 	//needs no negative cycles
